@@ -21,5 +21,33 @@ paths:
                   status:
                     type: string
                     example: "UP"
+  /api/parts:
+    get:
+      summary: Get all parts
+      responses:
+        '200':
+          description: List of parts
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PartRepresentation'
 components:
-  schemas: {}
+  schemas:
+    PartRepresentation:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 1
+        partName:
+          type: string
+          example: "Roller Kit"
+        partNumber:
+          type: string
+          example: "RK-001"
+        manufacturer:
+          type: string
+          example: "HP"
