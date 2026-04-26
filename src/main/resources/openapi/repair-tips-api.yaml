@@ -1,0 +1,25 @@
+openapi: 3.0.3
+info:
+  title: Repair Tips API
+  description: API for managing repair tips
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080
+    description: Local development server
+paths:
+  /health:
+    get:
+      summary: Health check
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "UP"
+components:
+  schemas: {}
