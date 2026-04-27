@@ -137,6 +137,56 @@
 					</execution>
 				</executions>
 			</plugin>
+			<plugin>
+				<groupId>org.openapitools</groupId>
+				<artifactId>openapi-generator-maven-plugin</artifactId>
+				<version>7.10.0</version>
+				<executions>
+					<execution>
+						<id>generate-api</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<inputSpec>src/main/resources/openapi/repair-tips-api.yaml</inputSpec>
+							<generatorName>spring</generatorName>
+							<apiPackage>br.com.fdrdev.repairtipsapi.api</apiPackage>
+							<modelPackage>br.com.fdrdev.repairtipsapi.model</modelPackage>
+							<outputDirectory>${project.build.directory}/generated-sources/openapi</outputDirectory>
+							<configOptions>
+								<interfaceOnly>true</interfaceOnly>
+								<useSpringBoot3>true</useSpringBoot3>
+								<delegatePattern>true</delegatePattern>
+								<generateModels>true</generateModels>
+								<generateApis>true</generateApis>
+								<skipIfSpecIsUnchanged>false</skipIfSpecIsUnchanged>
+								<apiNameSuffix></apiNameSuffix>
+								<apiNamePrefix></apiNamePrefix>
+							</configOptions>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<version>3.5.0</version>
+				<executions>
+					<execution>
+						<id>add-generated-sources</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>add-source</goal>
+						</goals>
+						<configuration>
+							<sources>
+								<source>${project.build.directory}/generated-sources/openapi/src/main/java</source>
+							</sources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
 
@@ -151,7 +201,8 @@
 						<version>7.10.0</version>
 						<executions>
 							<execution>
-								<id>generate-api</id>
+								<id>generate-api-clean</id>
+								<phase>clean</phase>
 								<goals>
 									<goal>generate</goal>
 								</goals>
@@ -160,10 +211,16 @@
 									<generatorName>spring</generatorName>
 									<apiPackage>br.com.fdrdev.repairtipsapi.api</apiPackage>
 									<modelPackage>br.com.fdrdev.repairtipsapi.model</modelPackage>
+									<outputDirectory>${project.build.directory}/generated-sources/openapi</outputDirectory>
 									<configOptions>
 										<interfaceOnly>true</interfaceOnly>
 										<useSpringBoot3>true</useSpringBoot3>
 										<delegatePattern>true</delegatePattern>
+										<generateModels>true</generateModels>
+										<generateApis>true</generateApis>
+										<skipIfSpecIsUnchanged>false</skipIfSpecIsUnchanged>
+										<apiNameSuffix></apiNameSuffix>
+										<apiNamePrefix></apiNamePrefix>
 									</configOptions>
 								</configuration>
 							</execution>

@@ -9,20 +9,22 @@ servers:
 paths:
   /health:
     get:
+      tags:
+        - "Health"
+      operationId: "checkHealth"
       summary: Health check
       responses:
         '200':
-          description: OK
+          description: Health status
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  status:
-                    type: string
-                    example: "UP"
-  /api/parts:
+                $ref: '#/components/schemas/HealthCheck200Response'
+  /parts:
     get:
+      tags:
+        - "Parts"
+      operationId: "getParts"
       summary: Get all parts
       responses:
         '200':
@@ -32,10 +34,18 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/PartRepresentation'
+                  $ref: '#/components/schemas/PartDto'
 components:
   schemas:
-    PartRepresentation:
+    HealthCheck200Response:
+      type: object
+      properties:
+        status:
+          type: string
+          example: "UP"
+      required:
+        - status
+    PartDto:
       type: object
       properties:
         id:

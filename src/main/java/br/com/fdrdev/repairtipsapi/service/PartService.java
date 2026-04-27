@@ -1,19 +1,29 @@
 package br.com.fdrdev.repairtipsapi.service;
 
-import br.com.fdrdev.repairtipsapi.model.PartRepresentation;
+import br.com.fdrdev.repairtipsapi.model.PartDto;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class PartService implements BaseService<PartRepresentation> {
+public class PartService {
 
-    @Override
-    public List<PartRepresentation> getAll() {
-        return List.of(
-            new PartRepresentation(1L, "Roller Kit", "RK-001", "HP"),
-            new PartRepresentation(2L, "Paper Separator", "PS-002", "HP"),
-            new PartRepresentation(3L, "Fuser Assembly", "FA-003", "HP")
+    public ResponseEntity<List<PartDto>> getParts() {
+        List<PartDto> parts = List.of(
+            createPart(1L, "Roller Kit", "RK-001", "HP"),
+            createPart(2L, "Paper Separator", "PS-002", "HP"),
+            createPart(3L, "Fuser Assembly", "FA-003", "HP")
         );
+        return ResponseEntity.ok(parts);
+    }
+
+    private PartDto createPart(Long id, String partName, String partNumber, String manufacturer) {
+        PartDto dto = new PartDto();
+        dto.setId(id);
+        dto.setPartName(partName);
+        dto.setPartNumber(partNumber);
+        dto.setManufacturer(manufacturer);
+        return dto;
     }
 }
