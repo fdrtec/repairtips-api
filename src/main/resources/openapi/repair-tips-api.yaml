@@ -2,7 +2,7 @@ openapi: 3.0.3
 info:
   title: Repair Tips API
   description: API for managing repair tips
-  version: 1.0.0
+  version: 1.0.1
 servers:
   - url: http://localhost:8080
     description: Local development server
@@ -23,9 +23,9 @@ paths:
   /parts:
     get:
       tags:
-        - "Parts"
+        - "Part"
       operationId: "getParts"
-      summary: Get all parts
+      summary: "Get all parts"
       responses:
         '200':
           description: List of parts

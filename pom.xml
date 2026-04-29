@@ -161,6 +161,7 @@
 								<generateModels>true</generateModels>
 								<generateApis>true</generateApis>
 								<skipIfSpecIsUnchanged>false</skipIfSpecIsUnchanged>
+								<apiNameMappings>Part=PartApi</apiNameMappings>
 								<apiNameSuffix></apiNameSuffix>
 								<apiNamePrefix></apiNamePrefix>
 							</configOptions>
