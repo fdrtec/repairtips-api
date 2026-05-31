@@ -1,0 +1,11 @@
+CREATE SEQUENCE IF NOT EXISTS parts_seq START WITH 1 INCREMENT BY 50;
+
+CREATE TABLE parts (
+  id BIGINT DEFAULT NEXT VALUE FOR parts_seq PRIMARY KEY,
+  part_name VARCHAR(255) NOT NULL,
+  part_number VARCHAR(255) NOT NULL,
+  manufacturer VARCHAR(255),
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE UNIQUE INDEX IF NOT EXISTS ux_parts_part_number ON parts(part_number);

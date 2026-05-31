@@ -35,6 +35,92 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/PartDto'
+    post:
+      tags:
+        - "Part"
+      operationId: "createPart"
+      summary: "Create a new part"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PartDto'
+      responses:
+        '201':
+          description: Part created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PartDto'
+        '409':
+          description: Part already exists (conflict)
+  /parts/{id}:
+    get:
+      tags:
+        - "Part"
+      operationId: "getPartById"
+      summary: "Get part by id"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Part found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PartDto'
+        '404':
+          description: Not found
+    put:
+      tags:
+        - "Part"
+      operationId: "updatePart"
+      summary: "Update part by id"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PartDto'
+      responses:
+        '200':
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PartDto'
+        '404':
+          description: Not found
+    delete:
+      tags:
+        - "Part"
+      operationId: "deletePart"
+      summary: "Delete part by id"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '204':
+          description: Deleted
+        '404':
+          description: Not found
 components:
   schemas:
     HealthCheck200Response:
@@ -61,3 +147,7 @@ components:
         manufacturer:
           type: string
           example: "HP"
+      required:
+        - partName
+        - partNumber
+ 
